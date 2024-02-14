@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>OneSpotSavings</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    header {
+      padding-bottom: 20px;
+      border-bottom: 3px solid black;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .navbar {
+      text-align: center;
+    }
+
+    .navbar a {
+      padding: 5px 10px 5px 10px;
+      text-decoration: none;
+      color: black;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .navbar a:hover {
+      background-color: black;
+      color: white;
+      animation-play-state: ;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .product {
+      text-align: center;
+      border: 9px solid whitesmoke;
+      background-color: whitesmoke;
+      border-radius: 5px;
+    }
+
+    .product img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .product h4 {
+      color: green;
+    }
+
+    .product h4 del {
+      color: red;
+    }
+
+    .btn {
+      text-decoration: none;
+      background-color: black;
+      color: white;
+      padding: 10px 30px 10px 30px;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background-color: whitesmoke;
+      color: black;
+    }
+
+    .search input {
+      margin-top: 20px;
+      margin-left: 5px;
+      margin-bottom: 20px;
+      width: 250px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border: 2px;
+      border-bottom: 5px solid grey;
+      outline: none;
+      border-radius: 3px;
+    }
+
+    .search input::placeholder {
+      color: black;
+      padding-left: 10px;
+      font-weight: 400;
+      font-size: 15px;
+    }
+
+    .search input[type="text"] {
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .search h1 {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+
+    .filter-box {
+      margin-top: 20px;
+      margin-bottom: 5px;
+      padding-bottom: 10px;
+    }
+
+    .phone img {
+      height: 30px;
+      width: 30px;
+      margin-left: 100px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body background="Hello.jpg">
+  <header>
+    <a href="#" class="logo">
+      <img src="Logo.png" alt="">
+    </a>
+    <a class="phone">
+      <img src="alternate-mobile.svg">
+    </a>
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#feedback">Feedback</a>
+    </nav>
+  </header>
+  <section>
+    <div class="search">
+      <h1>All Products</h1>
+      <div class="filter-box">
+        <a href="#" class="btn active" data-filter="all">All</a>
+        <a href="#" class="btn" data-filter="clothes">Clothes</a>
+        <a href="#" class="btn" data-filter="accessories">Accessories</a>
+      </div>
+      <input type="text" name="" id="find" placeholder="search here...." onkeyup="search()">
+      <div id="error-message" style="display: none; color: red; font-size: 30px;"></div>
+    </div>
+    <div class="product-list" id="store-products">
+      <div class="product clothes">
+        <img src="product1.jpg">
+        <h3>Adidas Shirt</h3>
+        <h4>$100.00 - <del>$120.00</del></h4>
+        <button href="#" class="btn">Buy now</button>
+      </div>
+       <div class="product clothes">
+          <img src="product3.jpg">
+          <h3>Coat</h3>
+          <h4>$50.00 - <del>$150.00</del></h4>
+          <button href="#" class="btn">Buy now</button>
+        </div>
+        <div class="product accessories">
+          <img src="product2.jpg">
+          <h3>Ear Pods</h3>
+          <h4>$70.00 - <del>$100.00</del></h4>
+          <button href="#" class="btn">Buy now</button>
+        </div>
+        <div class="product accessories">
+          <img src="product4.jpg">
+          <h3>Adidas Drinking Bottle</h3>
+          <h4>$60.00 - <del>$90.00</del></h4>
+          <button href="#" class="btn">Buy now</button>
+        </div>
+        <div class="product accessories">
+          <img src="product5.jpg">
+          <h3>Sun Glasses</h3>
+          <h4>$20.00 - <del>$50.00</del></h4>
+          <button href="#" class="btn">Buy now</button>
+        </div>
+        <div class="product clothes">
+          <img src="product6.jpg">
+          <h3>Adidas Hat</h3>
+          <h4>$90.00 - <del>$100.00</del></h4>
+          <button href="#" class="btn">Buy now</button>
+        </div>
+        <div class="product accessories">
+          <img src="product7.jpg">
+          <h3>BackPack</h3>
+          <h4>$50.00 - <del>$150.00</del></h4>
+          <button href="#" class="btn">Buy now</button>
+        </div>
+        <div class="product clothes">
+          <img src="product8.jpg">
+          <h3>Cool Kicks</h3>
+          <h4>$70.00 - <del>$100.00</del></h4>
+          <button href="#" class="btn">Buy now</button>
+        </div>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script type="text/javascript">
+    function search() {
+      let filter = document.getElementById('find').value.toUpperCase();
+      let categoryFilter = document.querySelector('.btn.active').getAttribute('data-filter');
+      let itemsToShow = document.querySelectorAll('.product.' + categoryFilter);
+      let itemsToHide = document.querySelectorAll('.product:not(.' + categoryFilter + ')');
+      let found = false;
+
+      if (categoryFilter === "all") {
+        itemsToShow = document.querySelectorAll('.product');
+        itemsToHide = [];
+      }
+
+      itemsToHide.forEach(item => {
+        item.style.display = 'none';
+      });
+
+      itemsToShow.forEach(item => {
+        let itemName = item.getElementsByTagName('h3')[0].innerText.toUpperCase();
+        if (itemName.indexOf(filter) > -1) {
+          item.style.display = '';
+          found = true;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (!found) {
+        showError("Product not found in this category!!!");
+      } else {
+        clearError();
+      }
+    }
+
+    function showError(message) {
+      let errorMessage = document.getElementById('error-message');
+      errorMessage.innerText = message;
+      errorMessage.style.display = "block";
+    }
+
+    function clearError() {
+      let errorMessage = document.getElementById('error-message');
+      errorMessage.style.display = "none";
+    }
+
+    const btns = document.querySelectorAll(".btn");
+
+    for (let i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", (e) => {
+        e.preventDefault();
+        const filter = e.target.getAttribute('data-filter');
+        document.querySelector('.btn.active').classList.remove('active');
+        e.target.classList.add('active');
+        search();
+      });
+    }
+  </script>
+</body>
+</html>
